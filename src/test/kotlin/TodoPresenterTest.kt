@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import kotlin.random.Random
+import kotlin.random.nextLong
 import kotlin.test.assertEquals
 import kotlin.test.fail
 
@@ -9,12 +10,16 @@ import kotlin.test.fail
  */
 class TodoPresenterTest {
 
+  private val uniqueTimestamps = generateSequence { Random.nextLong(0, 100000) }
+    .take(10)
+    .toList()
+
   private val fakeTestRepository = object : TodoRepository {
     override fun getNotes(): List<TodoNote> {
       return (1..10).map {
         TodoNote(
           body = "Body $it",
-          creationTimestamp = Random.nextLong()
+          creationTimestamp = uniqueTimestamps[it - 1]
         )
       }
     }

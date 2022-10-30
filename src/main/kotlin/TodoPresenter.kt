@@ -2,11 +2,17 @@
  * Presenter for our TODO notes.
  */
 class TodoPresenter(todoRepository: TodoRepository) {
-  val notes: List<TodoNote> = todoRepository.getNotes()
-    .sortedWith(NoteComparator().reversed())
+
+  private val _notes: MutableList<TodoNote> = mutableListOf()
+
+  val notes: List<TodoNote> = _notes
+
+  init {
+    _notes.addAll(todoRepository.getNotes().sortedWith(NoteComparator().reversed()))
+  }
 
   fun addNote() {
-
+    _notes.add(0, TodoNote("", System.currentTimeMillis()))
   }
 
   private class NoteComparator : Comparator<TodoNote> {
