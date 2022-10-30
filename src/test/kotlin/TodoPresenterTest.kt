@@ -29,8 +29,8 @@ class TodoPresenterTest {
       .windowed(2, 1)
       .all { (a, b) -> a.creationTimestamp > b.creationTimestamp }
 
-    assertTrue(notes.isNotEmpty())
-    assertTrue(isReverseChron)
+    assertTrue(notes.isNotEmpty(), "Test with empty notes list makes no sense.")
+    assertTrue(isReverseChron, "Test expected resulting notes to be in reverse chronological order.")
   }
 
   @Test
