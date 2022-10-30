@@ -66,7 +66,14 @@ class TodoPresenterTest {
 
   @Test
   fun `When I deleteNote, then I expect the note to be removed from the list`() {
-    fail()
+    val noteToDelete = testSubject.notes.first()
+
+    testSubject.deleteNote(noteToDelete.creationTimestamp)
+
+    assertTrue(
+      testSubject.notes.none { it.creationTimestamp == noteToDelete.creationTimestamp },
+      "The deleted note was still in the list."
+    )
   }
 
 }

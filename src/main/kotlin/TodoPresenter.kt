@@ -21,6 +21,9 @@ class TodoPresenter(todoRepository: TodoRepository) {
     _notes.add(noteIndex, updatedNote)
   }
 
+  fun deleteNote(timestamp: Long) {
+  }
+
   private class NoteComparator : Comparator<TodoNote> {
     override fun compare(o1: TodoNote, o2: TodoNote): Int {
       return o1.creationTimestamp.compareTo(o2.creationTimestamp)
