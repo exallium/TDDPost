@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import kotlin.random.Random
+import kotlin.test.assertEquals
 import kotlin.test.fail
 
 /**
@@ -35,7 +36,14 @@ class TodoPresenterTest {
 
   @Test
   fun `When I addNote, then I expect a new empty note at the head of the list`() {
-    fail()
+    val originalCount = testSubject.notes.size
+
+    testSubject.addNote()
+
+    val newCount = testSubject.notes.size
+    val firstNote = testSubject.notes.first()
+    assertEquals(originalCount + 1, newCount, "Expected a note to be added.")
+    assertEquals(firstNote.body, "", "Expected the head to be an empty note")
   }
 
   @Test
