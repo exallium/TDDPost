@@ -16,7 +16,9 @@ class TodoPresenter(todoRepository: TodoRepository) {
   }
 
   fun updateNote(updatedNote: TodoNote) {
-
+    val noteIndex = _notes.indexOfFirst { updatedNote.creationTimestamp == it.creationTimestamp }
+    _notes.removeAt(noteIndex)
+    _notes.add(noteIndex, updatedNote)
   }
 
   private class NoteComparator : Comparator<TodoNote> {
