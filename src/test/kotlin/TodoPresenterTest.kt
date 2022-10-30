@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import kotlin.math.exp
 import kotlin.random.Random
 import kotlin.random.nextLong
 import kotlin.test.assertEquals
@@ -53,7 +54,14 @@ class TodoPresenterTest {
 
   @Test
   fun `When I updateNote, then I expect the note to be updated with the given text`() {
-    fail()
+    val originalNote = testSubject.notes.first()
+    val updatedNote = originalNote.copy(body = "Updated body")
+
+    testSubject.updateNote(updatedNote)
+
+    val newNote = testSubject.notes.first()
+
+    assertEquals(updatedNote, newNote)
   }
 
   @Test
