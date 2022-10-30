@@ -22,6 +22,7 @@ class TodoPresenter(todoRepository: TodoRepository) {
   }
 
   fun deleteNote(timestamp: Long) {
+    _notes.removeIf { it.creationTimestamp == timestamp }
   }
 
   private class NoteComparator : Comparator<TodoNote> {
